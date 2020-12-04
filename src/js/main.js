@@ -1,31 +1,31 @@
 window.addEventListener("DOMContentLoaded", () => {
     'use strict';
 
-    const news = [
+    const newsTest = [
         {
             "header": "Новость",
             "author": "Давид",
             "date": "23.12.2108",
-            "link": "www.dot.com"       
+            "link": "www.dot.com",
         },
         {
             "header": "Танцы с бубном",
             "author": "Эрик",
             "date": "12.09.1918",
-            "link": "www.dot.com"        
+            "link": "www.dot.com",
         },
         {
             "header": "Годовщина Великой Изоляции",
             "author": "Эмма",
             "date": "89.56.3245",
-            "link": "www.dot.com"        
+            "link": "www.dot.com",
         },
         {
             "header": "Падение евро остановлено",
             "author": "Жанна",
             "date": "31.02.2007",
-            "link": "www.dot.com"        
-        }
+            "link": "www.dot.com",  
+        },
     ];
 
     const loadData = async (data) => {
@@ -35,8 +35,8 @@ window.addEventListener("DOMContentLoaded", () => {
         return answer;
     };
 
-    const loadList = (newsList) => {
-        const root = document.querySelector('.root');
+    const createList = (newsList, target) => {
+        const root = document.querySelector(target);
         const newsBox = document.createElement('div');
         const count = document.createElement('button');
 
@@ -61,29 +61,44 @@ window.addEventListener("DOMContentLoaded", () => {
         }
 
         newsBox.appendChild(count);
+
         count.addEventListener('click', () => {
             document.querySelectorAll('.test-news__item').forEach(item => {
-                item.classList.add('test-news__item_show');
+                if (!item.classList.contains('test-news__item_show')) {
+                    item.classList.add('test-news__item_show');
+                    count.textContent = 'X';
+                    count.style.backgroundColor = '#ff0000';
+                } else {
+                    item.classList.remove('test-news__item_show');
+                    count.textContent = newsList.length;
+                    count.style.backgroundColor = '#0ea11a';
+                }
             });
         });
     };
 
-    // loadData(news)
-    //     .then(json => {
-    //         loadList(json);
-    // });
-
-    loadList(news);
-
-    document.querySelectorAll('.test-news__link').forEach(item => {
-        item.addEventListener('click', (e) => {
-            e.preventDefault();
-            
-            const status = item.parentElement.querySelector('.test-news__status');
-
-            item.parentElement.style.color = '#bebcbc';
-            status.textContent = 'прочитано';
-            status.style.color = '#000000';
+    const markRead = () => {
+        document.querySelectorAll('.test-news__link').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                const status = item.parentElement.querySelector('.test-news__status');
+    
+                item.parentElement.style.color = '#bebcbc';
+                status.textContent = 'прочитано';
+                status.style.color = '#000000';
+            });
         });
-    });
+    };
+
+    const newsFeed = (news, wrap) => {
+        loadData(news)
+            .then(json => {
+                createList(json, wrap);
+        });
+        
+        markRead();
+    };
+
+    newsFeed(newsTest, '.root');
 });

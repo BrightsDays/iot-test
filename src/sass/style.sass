@@ -1,9 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;900&display=swap')
-    
 *
-    font-family: 'Montserrat', sans-serif
     margin: 0
     padding: 0
+    font-family: 'Montserrat', sans-serif
     box-sizing: border-box
 
     &:focus
@@ -13,12 +11,12 @@ body
     background-color: #c5c9c3
 
 h2
-    font-size: 25px
     margin-bottom: 15px
+    font-size: 25px
 
 p
-    font-size: 20px
     margin-bottom: 10px
+    font-size: 20px
 
 .test-news
     position: absolute
@@ -28,17 +26,17 @@ p
     height: 90%
 
     &__item
-        display: block
         position: relative
+        display: block
         width: 100%
+        padding: 15px
+        margin-bottom: 15px
         border-radius: 10px
         box-shadow: 10px 15px 16px -15px rgba(0, 0, 0, 0.95)
         background-color: #f0f0f0
-        padding: 15px
-        margin-bottom: 15px
         opacity: 0
         pointer-events: none
-        transition: opacity 1.7s
+        transition: opacity 1s
 
         &_show
             opacity: 1
@@ -60,21 +58,21 @@ p
         bottom: 15px
 
     &__count
-        display: block
         position: fixed
         right: 20px
         bottom: 20px
+        display: block
+        width: 100px
+        height: 50px
+        padding: 14px 15px 16px 55px
+        font-size: 20px
+        font-weight: bold
         background-color: #0ea11a
         color: #ffffff
         border: none
-        padding: 14px 15px 16px 55px
-        width: 100px
-        height: 50px
         border-radius: 25px
-        font-size: 20px
-        font-weight: bold
         cursor: pointer
-        transition: all 0.7s ease-out
+        transition: all 0.5s ease-out
 
         &::after
             position: relative
