@@ -96,28 +96,6 @@
 window.addEventListener("DOMContentLoaded", () => {
   'use strict';
 
-  const newsTest = [{
-    "header": "Новость",
-    "author": "Давид",
-    "date": "23.12.2108",
-    "link": "www.dot.com"
-  }, {
-    "header": "Танцы с бубном",
-    "author": "Эрик",
-    "date": "12.09.1918",
-    "link": "www.dot.com"
-  }, {
-    "header": "Годовщина Великой Изоляции",
-    "author": "Эмма",
-    "date": "89.56.3245",
-    "link": "www.dot.com"
-  }, {
-    "header": "Падение евро остановлено",
-    "author": "Жанна",
-    "date": "31.02.2007",
-    "link": "www.dot.com"
-  }];
-
   const loadData = async data => {
     let response = await fetch(data);
     let answer = await response.json();
@@ -177,11 +155,11 @@ window.addEventListener("DOMContentLoaded", () => {
   const newsFeed = (news, wrap) => {
     loadData(news).then(json => {
       createList(json, wrap);
+      markRead();
     });
-    markRead();
   };
 
-  newsFeed(newsTest, '.root');
+  newsFeed('https://brightsdays.github.io/iot-test/news.json', '.root');
 });
 
 /***/ })
