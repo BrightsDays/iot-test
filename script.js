@@ -127,12 +127,12 @@ window.addEventListener("DOMContentLoaded", () => {
     newsBox.appendChild(count);
     count.addEventListener('click', () => {
       document.querySelectorAll('.test-news__item').forEach(item => {
-        if (!item.classList.contains('test-news__item_show')) {
-          item.classList.add('test-news__item_show');
+        if (!item.classList.contains('test-news__item--show')) {
+          item.classList.add('test-news__item--show');
           count.textContent = 'X';
           count.style.backgroundColor = '#ff0000';
         } else {
-          item.classList.remove('test-news__item_show');
+          item.classList.remove('test-news__item--show');
           count.textContent = newsList.length;
           count.style.backgroundColor = '#0ea11a';
         }
