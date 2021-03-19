@@ -20,6 +20,18 @@
     {
         "header": "Падение евро остановлено",
         "author": "Жанна",
+        "date": "31.02.2012",
+        "link": "www.dot.com"        
+    },
+    {
+        "header": "Событие",
+        "author": "Яков",
+        "date": "89.56.1993",
+        "link": "www.dot.com"        
+    },
+    {
+        "header": "Пост",
+        "author": "Vika93",
         "date": "31.02.2007",
         "link": "www.dot.com"        
     }
