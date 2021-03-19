@@ -2,6 +2,7 @@
     margin: 0
     padding: 0
     font-family: 'Montserrat', sans-serif
+    font-size: 10px
     box-sizing: border-box
 
     &:focus
@@ -10,19 +11,15 @@
 body
     background-color: #c5c9c3
 
-h2
-    margin-bottom: 15px
-    font-size: 25px
-
 p
     margin-bottom: 10px
-    font-size: 20px
+    font-size: 2em
 
 .test-news
     position: absolute
     top: 0
     right: 0
-    padding: 20px 20px 0 0
+    padding: 10px
     width: clamp(320px, 320px, 100%)
     height: 100vh
     overflow-y: scroll
@@ -33,7 +30,6 @@ p
 
     &__item
         position: relative
-        right: -100%
         display: block
         width: 100%
         padding: 15px
@@ -43,19 +39,28 @@ p
         background-color: #f0f0f0
         opacity: 0
         pointer-events: none
-        transition: all 1s
+        transform: translateX(110%)
+        transition: all 1.2s
 
         &--show
-            right: 0
             opacity: 1
+            transform: translateX(0%)
             pointer-events: auto
+
+    &__header
+        margin-bottom: 15px
+        font-size: 3em
+        font-weight: bold
 
     &__date
         margin-bottom: 15px
+        font-size: 1.7em
 
     &__link
         display: block
         text-decoration: none
+        cursor: pointer
+        font-size: 1.7em
 
         &:hover
             text-decoration: underline
@@ -64,6 +69,7 @@ p
         position: absolute
         right: 15px
         bottom: 15px
+        font-size: 1.7em
 
     &__count
         position: fixed
@@ -92,7 +98,8 @@ p
         &:hover
             transform: scale(1.1)
 
-@media screen and (max-width: 360px)
-    .test-news
-        right: 0
-    
+        &:disabled
+            background-color: #525252
+
+            &:hover
+                transform: none

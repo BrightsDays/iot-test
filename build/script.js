@@ -97,9 +97,14 @@ window.addEventListener("DOMContentLoaded", () => {
   'use strict';
 
   const loadData = async data => {
-    let response = await fetch(data);
-    let answer = await response.json();
-    return answer;
+    const response = await fetch(data);
+
+    if (response.status == 200) {
+      const answer = await response.json();
+      return answer;
+    } else {
+      return [];
+    }
   };
 
   const createList = (newsList, target) => {
@@ -109,19 +114,34 @@ window.addEventListener("DOMContentLoaded", () => {
     newsBox.classList.add('test-news');
     count.classList.add('test-news__count');
     count.textContent = newsList.length;
+
+    if (newsList.length == 0) {
+      count.disabled = true;
+    }
+
     root.appendChild(newsBox);
 
     for (let i in newsList) {
-      const newsItem = `
-                <div class="test-news__item test-news__item_hide">
-                    <h1 class="test-news__header">${newsList[i].header}</h1>
-                    <p class="test-news__author">автор: ${newsList[i].author}</p>
-                    <p class="test-news__date">${newsList[i].date}</p>
-                    <a class="test-news__link" href="${newsList[i].link}">Подробнее</a>
-                    <span class="test-news__status">не прочитано</span>
-                </div>
-            `;
-      newsBox.innerHTML += newsItem;
+      const item = document.createElement('div');
+      const header = document.createElement('span');
+      const author = document.createElement('p');
+      const date = document.createElement('p');
+      const link = document.createElement('a');
+      const status = document.createElement('span');
+      item.classList.add('test-news__item');
+      header.classList.add('test-news__header');
+      header.textContent = newsList[i].header;
+      author.classList.add('test-news__author');
+      author.textContent = `Автор: ${newsList[i].author}`;
+      date.classList.add('test-news__date"');
+      date.textContent = newsList[i].date;
+      link.classList.add('test-news__link');
+      link.textContent = 'Подробнее';
+      link.href = newsList[i].link;
+      status.classList.add('test-news__status');
+      status.textContent = 'не прочитано';
+      item.append(header, author, date, link, status);
+      newsBox.appendChild(item);
     }
 
     newsBox.appendChild(count);
